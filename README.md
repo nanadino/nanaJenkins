@@ -81,11 +81,11 @@ pipeline {
                 '''
             }
         }
-        stage('Transfer File via SCP') {
+        stage('Transfer SCP') {
             steps {
                 script {
                     sh """
-                    scp -i ~/.ssh/id_rsa -P 포트번호 project_name/build/libs/project_name-                       0.0.1-SNAPSHOT.jar user@address:/home/user/
+                    scp -i ~/.ssh/id_rsa -P 포트번호 project_name/build/libs/project_name-                       0.0.1-SNAPSHOT.jar user@옮길 가상머신의 address:/home/user/
                     """
                 }
             }
