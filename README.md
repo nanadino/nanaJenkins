@@ -56,14 +56,47 @@ pipeline {
         }
         stage('Build JAR') {
             steps {
-                sh 'mvn clean package'
+                dir('./project_name') {                   
+                  sh 'chmod +x gradlew'    
+                  sh './gradlew build'
+                  sh 'mvn clean package'
+                }
+                
             }
         }
-        stage('Deploy to myserver02') {
+        stage('Copy jar') {
             steps {
-                sh 'scp target/myapp.jar user@myserver02:/home/ubuntu/jarappdir/'
-                sh 'ssh user@myserver02 "pkill -f myapp.jar; nohup java -jar /home/ubuntu/jarappdir/myapp.jar &"'
+                script {
+                    def jarFile = 'project_name/build/libs/project_name-0.0.1-SNAPSHOT.jar'
+                    def targetDir = '/var/jenkins_home/appjar' // 컨테이너 내부 경로
+                    sh "cp ${jarFile} ${targetDir}/"
+                }
             }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                    scp -i ~/.ssh/id_rsa -r project_name/build/libs/project_name-0.0.1-                          SNAPSHOT.jar user@10.0.2.20:/home/user/appjardir/
+                    ssh -i ~/.ssh/id_rsa user@address "pkill -f 'java -jar' || true &&                           nohup java -jar /home/user/appjardir/project_name-0.0.1-SNAPSHOT.jar >                       /home/user/appjardir/app.log 2>&1 &"
+                '''
+            }
+        }
+        stage('Transfer File via SCP') {
+            steps {
+                script {
+                    sh """
+                    scp -i ~/.ssh/id_rsa -P 포트번호 project_name/build/libs/project_name-                       0.0.1-SNAPSHOT.jar user@address:/home/user/
+                    """
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo ':흰색_확인_표시: 빌드 성공!'
+        }
+        failure {
+            echo ':x: 빌드 실패! 오류 확인 필요!'
         }
     }
 }
