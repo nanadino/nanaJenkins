@@ -76,8 +76,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    scp -i ~/.ssh/id_rsa -r project_name/build/libs/project_name-0.0.1-                          SNAPSHOT.jar user@10.0.2.20:/home/user/appjardir/
-                    ssh -i ~/.ssh/id_rsa user@address "pkill -f 'java -jar' || true &&                           nohup java -jar /home/user/appjardir/project_name-0.0.1-SNAPSHOT.jar >                       /home/user/appjardir/app.log 2>&1 &"
+                    scp -i ~/.ssh/id_rsa -r project_name/build/libs/project_name-0.0.1-                          SNAPSHOT.jar user@myserver02 의 address:/home/user/appjardir/
+                    ssh -i ~/.ssh/id_rsa user@myserver02 의 address "pkill -f 'java -jar' ||                     true && nohup java -jar /home/user/appjardir/project_name-0.0.1-                             SNAPSHOT.jar > /home/user/appjardir/app.log 2>&1 &"
                 '''
             }
         }
