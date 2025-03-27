@@ -53,11 +53,67 @@
 ![CICD아키텍쳐 drawio (2)](https://github.com/user-attachments/assets/a253bec1-5f32-4fb5-b0c5-1a989d7d529b)
 
 
-### 🔄 2단계 Architecture 
+### 🚀 2단계 Architecture 
 
 ![CICD아키텍쳐2 drawio](https://github.com/user-attachments/assets/7b6e68be-e5ee-47dc-8839-eeb754781f67)
 
- 
+### 🚀 3단계 Ubuntu 에 jenkins 설치
+
+## 1. **Ubuntu 패키지 업데이트**
+```
+sudo apt update
+```
+
+## 2. **Java 설치**
+```
+sudo apt install -y fontconfig openjdk-17-jre
+```
+
+## 3. **Jenkins GPG 키 추가**
+```
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+```
+
+## 4. **Jenkins 패키지 저장소 추가**
+```
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/" | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
+
+## 5. **패키지 리스트 업데이트**
+```
+sudo apt update
+```
+
+## 6. **Jenkins 설치**
+```
+sudo apt install -y jenkins
+```
+
+## 7. **Jenkins 서비스 실행**
+```
+sudo systemctl start jenkins
+```
+
+## 8. **Jenkins 관리자 비밀번호 확인**
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+## 9. **포트포워딩**
+![image](https://github.com/user-attachments/assets/2432c906-3140-459b-89f9-7b8c59d9fb6a)
+## 10. **Jenkins 웹 접속**
+```
+http://<서버 IP>:8080
+```
+
+## 11. **플러그인 및 사용자 설정**
+- **"Install suggested plugins"** 선택 → 자동 설치 진행  
+- 관리자 계정 생성  
+- Jenkins URL 설정  
+
  ## 4️⃣ Contents 
 
  ### 🛠 구성 요소
