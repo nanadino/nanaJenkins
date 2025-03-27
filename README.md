@@ -8,9 +8,8 @@
 - [1️⃣ Contributors](#1%EF%B8%8F⃣-contributors)
 - [2️⃣ Purpose](#2%EF%B8%8F⃣-purpose)
 - [3️⃣ Architecture](#3%EF%B8%8F⃣-architecture)
-- [4️⃣ Contents](#3%EF%B8%8F⃣-contents)
-- [5️⃣ Performance Optimization](#4%EF%B8%8F⃣-performance-optimization)
-- [6️⃣ Conclusion](#5%EF%B8%8F⃣-Conclusion)
+- [4️⃣ Contents](#4%EF%B8%8F⃣-contents)
+- [5️⃣ Conclusion](#5%EF%B8%8F⃣-conclusion)
   
 <br>
 <br>
@@ -47,32 +46,29 @@
 
 
 
-
-
 ## 3️⃣ Architecture
-### 1단계 Architecture 🚀
+
+### 🚀 1단계 Architecture 
 
 ![CICD아키텍쳐 drawio (2)](https://github.com/user-attachments/assets/a253bec1-5f32-4fb5-b0c5-1a989d7d529b)
 
 
-
-### 2단계 Architecture 🔄
+### 🔄 2단계 Architecture 
 
 ![CICD아키텍쳐2 drawio](https://github.com/user-attachments/assets/7b6e68be-e5ee-47dc-8839-eeb754781f67)
 
  
  ## 4️⃣ Contents 
- ### 🚀 1단계: 개인 시스템 CI/CD
 
  ### 🛠 구성 요소
  - **myserver01** (CI 서버): 코드 빌드 및 JAR 파일 생성
  - **myserver02** (CD 서버): JAR 파일 배포 및 실행
  
-### 1단계 🚀
+### 🚀 1단계 
 - 내 로컬 시스템에서 VM 2개 생성하여 CI/CD 진행 (개인 시스템 CI/CD)
     - **myserver01** → **myserver02**
 
-### 2단계 🔄
+### 🔄 2단계 
 - 내 시스템에 이관 (내 **myserver01** → 다른 PC의 **myserver02**)
     - 네트워크 통신
     - **myserver02**에게 `scp` 명령어로 이관
@@ -150,14 +146,7 @@ pipeline {
 
 ---
 
-
-
-
-## 🔥 결론
-이 프로젝트를 통해 Jenkins 기반의 자동화된 CI/CD 파이프라인을 구축하고, 하이브리드 클라우드 환경에서도 원활한 배포를 실현. 로컬 및 원격 시스템 간의 경계를 허물고, 배포 자동화의 유연성을 극대화
-
-
-
-
+## 5️⃣ Conclusion
+CI/CD 자동화는 Jenkins를 활용하여 코드 변경 시 자동으로 빌드하고, 원격 서버에 배포하는 과정입니다. 이를 통해 개발 및 배포 과정에서의 효율성을 높일 수 있습니다. 1단계에서는 **개인 시스템에서 CI/CD를 진행**하고, 2단계에서는 **원격 서버 간의 자동화 배포를 설정**하여 실시간 수정 감지 및 실행을 구현했습니다. 이를 통해 **빠르고 안정적인 배포 환경을 구축**할 수 있습니다.
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=ADEDFF&height=150&section=footer" width="1000" />
