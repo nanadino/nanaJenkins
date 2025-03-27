@@ -7,9 +7,10 @@
 ## 📍 Outline
 - [1️⃣ Contributors](#1%EF%B8%8F⃣-contributors)
 - [2️⃣ Purpose](#2%EF%B8%8F⃣-purpose)
-- [3️⃣ Contents](#3%EF%B8%8F⃣-contents)
-- [4️⃣ Performance Optimization](#4%EF%B8%8F⃣-performance-optimization)
-- [5️⃣ Conclusion](#5%EF%B8%8F⃣-Conclusion)
+- [3️⃣ Architecture](#3%EF%B8%8F⃣-architecture)
+- [4️⃣ Contents](#3%EF%B8%8F⃣-contents)
+- [5️⃣ Performance Optimization](#4%EF%B8%8F⃣-performance-optimization)
+- [6️⃣ Conclusion](#5%EF%B8%8F⃣-Conclusion)
   
 <br>
 <br>
@@ -24,28 +25,59 @@
 
 <br>
 
-# Hybrid Cloud CI/CD 프로젝트
 
-## 📌 개요
-하이브리드 클라우드 환경에서의 CI/CD 자동화 목표.Jenkins를 활용하여 소스 코드 변경 사항을 자동으로 빌드하고, 원격 서버로 배포 및 실행하는 과정을 포함
+## 2️⃣ Purpose
 
-## 아키텍처
-**1단계 아키텍처**
+## 📚 개요
+
+### 🎯 목표
+**📌 Hybrid Cloud CI/CD 프로젝트**
+
+- **myserver01** (Jenkins 서버)과 **myserver02** (운영 서버)로 가정
+- 하이브리드 클라우드 환경에서의 CI/CD 자동화
+- Jenkins를 활용하여 소스 코드 변경 사항을 자동으로 빌드하고, 원격 서버로 배포
+- **inotify**를 활용하여 JAR 파일 실행
+
+### ⚙️ 전제 조건
+- 자동화
+- Jenkins 스크립트
+- `.sh` 파일
+
+---
+
+
+
+
+
+## 3️⃣ Architecture
+### 1단계 Architecture 🚀
 
 ![CICD아키텍쳐 drawio (2)](https://github.com/user-attachments/assets/a253bec1-5f32-4fb5-b0c5-1a989d7d529b)
 
 
 
-**2단계 아키텍처**
+### 2단계 Architecture 🔄
 
 ![CICD아키텍쳐2 drawio](https://github.com/user-attachments/assets/7b6e68be-e5ee-47dc-8839-eeb754781f67)
 
  
- ## 🚀 1단계: 개인 시스템 CI/CD
+ ## 4️⃣ Contents 
+ ### 🚀 1단계: 개인 시스템 CI/CD
+
  ### 🛠 구성 요소
  - **myserver01** (CI 서버): 코드 빌드 및 JAR 파일 생성
  - **myserver02** (CD 서버): JAR 파일 배포 및 실행
  
+### 1단계 🚀
+- 내 로컬 시스템에서 VM 2개 생성하여 CI/CD 진행 (개인 시스템 CI/CD)
+    - **myserver01** → **myserver02**
+
+### 2단계 🔄
+- 내 시스템에 이관 (내 **myserver01** → 다른 PC의 **myserver02**)
+    - 네트워크 통신
+    - **myserver02**에게 `scp` 명령어로 이관
+    - **inotify**로 수정 감지하여 JAR 실행
+
  ### 🔗 CI/CD 흐름
  1. **Continuous Integration (CI)**
     - GitHub에서 최신 코드 pull
@@ -56,6 +88,7 @@
     - scp를 이용해 자신의 myserver01 -> 자신의 myserver02 로 JAR 파일 전송
     - 실행 중인 애플리케이션 중지 후 새로운 JAR 실행
     - ssh 통신 및 포트포워딩을 통해 자신의 myserver01 -> 타인의 myserver02 로 jar 파일 전송 
+
 
 ### 📜 Jenkins Pipeline Script
 ```groovy
