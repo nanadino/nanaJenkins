@@ -103,14 +103,19 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
 ## 9. **포트포워딩**
-![image](https://github.com/user-attachments/assets/2432c906-3140-459b-89f9-7b8c59d9fb6a)
+![image](https://github.com/user-attachments/assets/92228e4d-7621-4742-9499-0b1ac4dd6bb7)
 ## 10. **Jenkins 웹 접속**
 ```
 http://<서버 IP>:8080
 ```
+해당 페이지에 관리자 비밀번호 입력
+
+![image](https://github.com/user-attachments/assets/2c721ef7-8de9-4788-b01e-d37973f11ab5)
 
 ## 11. **플러그인 및 사용자 설정**
-- **"Install suggested plugins"** 선택 → 자동 설치 진행  
+- **"Install suggested plugins"** 선택 → 자동 설치 진행
+  
+![image](https://github.com/user-attachments/assets/6a581cca-78b5-48b1-9a49-b4e1c939d260)  
 - 관리자 계정 생성  
 - Jenkins URL 설정  
 
