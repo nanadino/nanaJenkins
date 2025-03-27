@@ -37,6 +37,9 @@
 
 
 **2단계 아키텍처**
+
+![CICD아키텍쳐2 drawio](https://github.com/user-attachments/assets/7b6e68be-e5ee-47dc-8839-eeb754781f67)
+
  
  ## 🚀 1단계: 개인 시스템 CI/CD
  ### 🛠 구성 요소
