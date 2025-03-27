@@ -42,10 +42,6 @@
 - Jenkins 스크립트
 - `.sh` 파일
 
----
-
-
-
 ## 3️⃣ Architecture
 
 ### 🚀 1단계 Architecture 
@@ -56,6 +52,22 @@
 ### 🚀 2단계 Architecture 
 
 ![CICD아키텍쳐2 drawio](https://github.com/user-attachments/assets/7b6e68be-e5ee-47dc-8839-eeb754781f67)
+
+## 4️⃣ Contents 
+
+### 🛠 구성 요소
+ - **myserver01** (CI 서버): 코드 빌드 및 JAR 파일 생성
+ - **myserver02** (CD 서버): JAR 파일 배포 및 실행
+ 
+### 🚀 1단계 
+- 내 로컬 시스템에서 VM 2개 생성하여 CI/CD 진행 (개인 시스템 CI/CD)
+    - **myserver01** → **myserver02**
+
+### 🚀 2단계 
+- 내 시스템에 이관 (내 **myserver01** → 다른 PC의 **myserver02**)
+    - 네트워크 통신
+    - **myserver02**에게 `scp` 명령어로 이관
+    - **inotify**로 수정 감지하여 JAR 실행
 
 ### 🚀 3단계 Ubuntu 에 jenkins 설치
 
@@ -116,25 +128,16 @@ http://<서버 IP>:8080
 - **"Install suggested plugins"** 선택 → 자동 설치 진행
   
 ![image](https://github.com/user-attachments/assets/6a581cca-78b5-48b1-9a49-b4e1c939d260)  
-- 관리자 계정 생성  
-- Jenkins URL 설정  
 
- ## 4️⃣ Contents 
+- 관리자 계정 생성
 
- ### 🛠 구성 요소
- - **myserver01** (CI 서버): 코드 빌드 및 JAR 파일 생성
- - **myserver02** (CD 서버): JAR 파일 배포 및 실행
- 
-### 🚀 1단계 
-- 내 로컬 시스템에서 VM 2개 생성하여 CI/CD 진행 (개인 시스템 CI/CD)
-    - **myserver01** → **myserver02**
+![image](https://github.com/user-attachments/assets/0f773c95-fd13-4bf5-b997-276dbde0507e)
 
-### 🔄 2단계 
-- 내 시스템에 이관 (내 **myserver01** → 다른 PC의 **myserver02**)
-    - 네트워크 통신
-    - **myserver02**에게 `scp` 명령어로 이관
-    - **inotify**로 수정 감지하여 JAR 실행
+- Jenkins URL 설정
 
+![image](https://github.com/user-attachments/assets/166ae8a7-0ace-4ccb-8e49-1d903bab879e)
+
+  
  ### 🔗 CI/CD 흐름
  1. **Continuous Integration (CI)**
     - GitHub에서 최신 코드 pull
